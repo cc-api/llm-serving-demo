@@ -11,7 +11,6 @@ def prepare_retriever(model_name, index_name="faiss"):
     """初始化 RAG 检索器"""
     tokenizer = RagTokenizer.from_pretrained(model_name)
     retriever = RagRetriever.from_pretrained(
-            model_name, index_name=index_name, use_dummy_dataset=True
+        model_name, index_name=index_name, use_dummy_dataset=True
     )
     return tokenizer, retriever
-
