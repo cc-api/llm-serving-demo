@@ -1,0 +1,10 @@
+{
+	  "train": [
+		      {"question": "What is PyTorch?", "answer": "PyTorch is a deep learning framework."},
+		          {"question": "What is FastAPI?", "answer": "FastAPI is a web framework for building APIs."}
+			    ],
+			      "validation": [
+				          {"question": "What is Hugging Face?", "answer": "Hugging Face is a company that provides NLP tools."}
+					    ]
+}
+

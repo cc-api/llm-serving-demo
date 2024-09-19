@@ -1,0 +1,7 @@
+torch
+transformers
+datasets
+faiss-cpu     # 用于快速检索的库
+fastapi
+uvicorn
+
