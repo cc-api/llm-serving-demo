@@ -7,19 +7,17 @@ sudo wget https://www.python.org/ftp/python/3.8.12/Python-3.8.12.tgz
 sudo tar xzf Python-3.8.12.tgz
 
 cd Python-3.8.12
-sudo ./configure --enable-optimizations
+sudo ./configure --enable-optimizations --with-system-ffi
 sudo make altinstall
 
 
 python3.8 --version
 
 
-sudo update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.8 1
-sudo update-alternatives --config python3
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+sudo python3.8 get-pip.py
+pip3 --version
 
-sudo apt install python3-pip
-
-pip3 install fastapi uvicorn
 
 
 apt-get install python3-venv
@@ -31,5 +29,7 @@ python3 -m venv rag_env
 source rag_env/bin/activate
 
 # 安装依赖
+pip install --upgrade pip
+
 pip install -r requirements.txt
 
