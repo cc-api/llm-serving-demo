@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request
-from transformers import RagTokenizer, RagTokenForGeneration
+from transformers import RagTokenizer, RagRetriever, RagTokenForGeneration
 import torch
 
 # 加载微调后的模型和检索器

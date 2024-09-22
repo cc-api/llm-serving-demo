@@ -2,7 +2,7 @@ torch
 numpy
 transformers
 datasets
-faiss-cpu==1.6.3     # 用于快速检索的库
+faiss-cpu     # 用于快速检索的库
 fastapi
-uvicorn==0.15.0
+uvicorn
 

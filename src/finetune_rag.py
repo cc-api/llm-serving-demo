@@ -7,6 +7,11 @@ from utils import load_knowledge_data, prepare_retriever
 data_path = "data/knowledge_dataset.json"
 dataset = load_knowledge_data(data_path)
 
+
+# 如果数据集没有分割，进行分割
+if "train" not in dataset:
+    dataset = dataset.train_test_split(test_size=0.1)
+
 # 加载模型和检索器
 model_name = "facebook/rag-token-base"
 tokenizer, retriever = prepare_retriever(model_name)
@@ -16,10 +21,18 @@ model = RagTokenForGeneration.from_pretrained(model_name, retriever=retriever)
 
 # Tokenization
 def tokenize_function(examples):
-    questions = examples["question"]
-    answers = examples["answer"]
-    inputs = tokenizer(questions, padding="max_length", truncation=True, return_tensors="pt")
-    labels = tokenizer(answers, padding="max_length", truncation=True, return_tensors="pt").input_ids
+    inputs = tokenizer(
+            examples["question"],
+            padding="max_length",
+            truncation=True,
+            max_length=512
+            )
+    labels = tokenizer(
+            examples["answer"],
+            padding="max_length",
+            truncation=True,
+            max_length=512
+            ).input_ids
     inputs["labels"] = labels
     return inputs
 
@@ -34,7 +47,7 @@ training_args = TrainingArguments(
     per_device_train_batch_size=2,
     per_device_eval_batch_size=2,
     num_train_epochs=3,
-    save_steps=10_000,
+    save_steps=500,
     save_total_limit=2,
 )
 

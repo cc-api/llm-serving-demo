@@ -31,5 +31,7 @@ source rag_env/bin/activate
 # 安装依赖
 pip install --upgrade pip
 
+pip install --upgrade accelerate autoawq transformers
+
 pip install -r requirements.txt
 
